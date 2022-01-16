@@ -9,9 +9,28 @@ class User {
         const requestURL = `${this.API_URL}${userName}`;
         const response = await fetch(requestURL);
         const user = await response.json();
-        console.log(user);
+        // return user object
+        return user;
     }
+    // get users list of repos
+    async getRepos(userInfo) {
+        const reposURL = userInfo.repos_url;
+        const response = await fetch(reposURL);
+        const repos = await response.json();
+        return repos;
+    }
+
 }
 
+// example of how we would use this class in main.js
 const newUser = new User("https://api.github.com/users/");
-newUser.getUser("StarbzYT");
+newUser.getUser("StarbzYT")
+    .then((userData) => {
+        newUser.getRepos(userData)
+            .then((repoData) => {
+                console.log(repoData);
+            })
+    })
+
+
+
