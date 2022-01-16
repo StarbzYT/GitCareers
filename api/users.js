@@ -19,7 +19,15 @@ class User {
         const repos = await response.json();
         return repos;
     }
-
+    // get common languages for last 4 repos
+    async getLanguages(repoInfo) {
+        // slice repos list to get only 4 recent repos
+        const recentRepos = repoInfo.slice(0, 9);
+        console.log(recentRepos);
+        // for each repo, select the most dominant language
+        const commonLangs = recentRepos.map((repo) => repo.language);
+        return commonLangs;
+    }
 }
 
 // example of how we would use this class in main.js
@@ -28,7 +36,10 @@ newUser.getUser("StarbzYT")
     .then((userData) => {
         newUser.getRepos(userData)
             .then((repoData) => {
-                console.log(repoData);
+                newUser.getLanguages(repoData)
+                    .then((recentRepos) => {
+                        console.log(recentRepos);
+                    })
             })
     })
 
