@@ -28,19 +28,45 @@ class User {
         const commonLangs = recentRepos.map((repo) => repo.language);
         return commonLangs;
     }
+    // get user meta data: name, username, 
+    async getUserProfile(userName) {
+        // GET
+        const requestURL = `${this.API_URL}${userName}`;
+        const response = await fetch(requestURL);
+        const user = await response.json();
+        // grab metadata from user object
+        const { avatar_url, name, login, bio, followers, following } = user;
+        // return user object with profile data
+        const profileData = {
+            // avatar
+            avatar: avatar_url,
+            // name
+            name: name,
+            // username
+            username: login,
+            // bio
+            bio: bio,
+            // followers
+            followers: followers,
+            // following
+            following: following
+        }
+        return profileData;
+    }
 }
 
 // example of how we would use this class in main.js
 const newUser = new User("https://api.github.com/users/");
-newUser.getUser("StarbzYT")
+newUser.getUserProfile("StarbzYT")
     .then((userData) => {
-        newUser.getRepos(userData)
-            .then((repoData) => {
-                newUser.getLanguages(repoData)
-                    .then((recentRepos) => {
-                        console.log(recentRepos);
-                    })
-            })
+        console.log(userData);
+        // newUser.getRepos(userData)
+        //     .then((repoData) => {
+        //         newUser.getLanguages(repoData)
+        //             .then((recentRepos) => {
+        //                 console.log(recentRepos);
+        //             })
+        //     })
     })
 
 
