@@ -21,9 +21,8 @@ class User {
     }
     // get common languages for last 4 repos
     async getLanguages(repoInfo) {
-        // slice repos list to get only 4 recent repos
+        // slice repos list to get only 8 recent repos
         const recentRepos = repoInfo.slice(0, 9);
-        console.log(recentRepos);
         // for each repo, select the most dominant language
         const commonLangs = recentRepos.map((repo) => repo.language);
         return commonLangs;
@@ -35,7 +34,11 @@ class User {
         const response = await fetch(requestURL);
         const user = await response.json();
         // grab metadata from user object
-        const { avatar_url, name, login, bio, followers, following } = user;
+        const { avatar_url, name, login, bio } = user;
+        // get repos for user
+        const userRepos = await this.getRepos(user);
+        // get users top languages
+        const topLang = await this.getLanguages(userRepos);
         // return user object with profile data
         const profileData = {
             // avatar
@@ -46,10 +49,10 @@ class User {
             username: login,
             // bio
             bio: bio,
-            // followers
-            followers: followers,
-            // following
-            following: following
+            // github profile link
+            link: `github.com/${login}`,
+            // languages user used recently
+            languages: topLang
         }
         return profileData;
     }
@@ -57,17 +60,23 @@ class User {
 
 // example of how we would use this class in main.js
 const newUser = new User("https://api.github.com/users/");
-newUser.getUserProfile("StarbzYT")
-    .then((userData) => {
-        console.log(userData);
-        // newUser.getRepos(userData)
-        //     .then((repoData) => {
-        //         newUser.getLanguages(repoData)
-        //             .then((recentRepos) => {
-        //                 console.log(recentRepos);
-        //             })
-        //     })
-    })
+
+async function userProfile(user) {
+    const userProfile = await newUser.getUserProfile("chhokara");
+    console.log(userProfile);
+}
+userProfile(newUser);
+// newUser.getUserProfile("bhavjitChauhan")
+//     .then((userData) => {
+//         console.log(userData);
+//         // newUser.getRepos(userData)
+//         //     .then((repoData) => {
+//         //         newUser.getLanguages(repoData)
+//         //             .then((recentRepos) => {
+//         //                 console.log(recentRepos);
+//         //             })
+//         //     })
+//     })
 
 
 
