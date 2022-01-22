@@ -1,3 +1,3 @@
 // import helper files for js components
-import '.users.js';
-import './jobs.js';
+import { User } from './users.js';
+import { JobList } from './jobs.js';

@@ -1,7 +1,7 @@
 // import api auth data
 import { APP_ID, API_KEY } from './apiAuth.js';
 
-export class JobList{
+export class JobList {
     // each instance must pass api url
     constructor(url) {
         this.url = url;

@@ -1,5 +1,5 @@
 // helper js file to find user's github info
-class User {
+export class User {
     constructor(API_URL) {
         this.API_URL = API_URL;
     }
@@ -60,13 +60,13 @@ class User {
 }
 
 // example of how we would use this class in main.js
-const newUser = new User("https://api.github.com/users/");
+// const newUser = new User("https://api.github.com/users/");
 
-async function userProfile(user) {
-    const userProfile = await newUser.getUserProfile("StarbzYT");
-    console.log(userProfile);
-}
-userProfile(newUser);
+// async function userProfile(user) {
+//     const userProfile = await newUser.getUserProfile("StarbzYT");
+//     console.log(userProfile);
+// }
+// userProfile(newUser);
 // newUser.getUserProfile("bhavjitChauhan")
 //     .then((userData) => {
 //         console.log(userData);
