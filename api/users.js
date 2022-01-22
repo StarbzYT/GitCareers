@@ -23,9 +23,10 @@ class User {
     async getLanguages(repoInfo) {
         // slice repos list to get only 8 recent repos
         const recentRepos = repoInfo.slice(0, 9);
-        // for each repo, select the most dominant language
+        // for each repo, select the language and put into array
         const commonLangs = recentRepos.map((repo) => repo.language);
-        return commonLangs;
+        // extract topLang1 from commonLangs and choose the 2nd top language
+        return [commonLangs[commonLangs.length - 1], commonLangs[commonLangs.length - 2]];
     }
     // get user meta data: name, username, 
     async getUserProfile(userName) {
@@ -62,7 +63,7 @@ class User {
 const newUser = new User("https://api.github.com/users/");
 
 async function userProfile(user) {
-    const userProfile = await newUser.getUserProfile("chhokara");
+    const userProfile = await newUser.getUserProfile("StarbzYT");
     console.log(userProfile);
 }
 userProfile(newUser);
