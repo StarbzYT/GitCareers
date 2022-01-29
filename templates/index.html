@@ -67,22 +67,23 @@
     </h3>
     <div class="container-fluid mb-3">
       <form class="row d-flex justify-content-center">
-        <div class="form-group" style="max-width: 50%">
+        <div class="form-group" style="max-width: 100vh">
           <div class="input-group">
             <input
               type="text"
-              class="form-control mr-2"
+              class="form-control is-invalid mr-2"
               id="exampleInputEmail1"
               placeholder="Enter your GitHub username"
               style="border-radius: 1em 0em 0em 1em"
             />
             <button
-              type="button"
+              type="submit"
               class="btn btn-success"
               style="border-radius: 0em 1em 1em 0em"
             >
               Search
             </button>
+            <div class="invalid-feedback">User not found. Try another?</div>
           </div>
           <small class="form-text text-muted"
             >We'll never share your username with anyone else.</small
@@ -118,7 +119,7 @@
     </div>
     <div class="container">
       <div class="row d-flex justify-content-center">
-        <div class="card col-3 box bg-dark" style="border-radius: 1em">
+        <div class="card col-sm box bg-dark" style="border-radius: 1em">
           <div class="card-body">
             <h4 class="card-title text-light">Card title</h4>
             <h6 class="card-subtitle mb-2 text-muted text-light">
@@ -131,7 +132,7 @@
             <a href="#" class="card-link text-light">Card link</a>
           </div>
         </div>
-        <div class="card col-3 box bg-dark" style="border-radius: 1em">
+        <div class="card col-sm box bg-dark" style="border-radius: 1em">
           <div class="card-body">
             <h4 class="card-title text-light">Card title</h4>
             <h6 class="card-subtitle mb-2 text-muted text-light">
@@ -144,48 +145,7 @@
             <a href="#" class="card-link text-light">Card link</a>
           </div>
         </div>
-        <div class="card col-3 box bg-dark" style="border-radius: 1em">
-          <div class="card-body">
-            <h4 class="card-title text-light">Card title</h4>
-            <h6 class="card-subtitle mb-2 text-muted text-light">
-              Card subtitle
-            </h6>
-            <p class="card-text text-light">
-              Some quick example text to build on the card title and make up the
-              bulk of the card's content.
-            </p>
-            <a href="#" class="card-link text-light">Card link</a>
-          </div>
-        </div>
-      </div>
-      <div class="row d-flex justify-content-center">
-        <div class="card col-3 box bg-dark" style="border-radius: 1em">
-          <div class="card-body">
-            <h4 class="card-title text-light">Card title</h4>
-            <h6 class="card-subtitle mb-2 text-muted text-light">
-              Card subtitle
-            </h6>
-            <p class="card-text text-light">
-              Some quick example text to build on the card title and make up the
-              bulk of the card's content.
-            </p>
-            <a href="#" class="card-link text-light">Card link</a>
-          </div>
-        </div>
-        <div class="card col-3 box bg-dark" style="border-radius: 1em">
-          <div class="card-body">
-            <h4 class="card-title text-light">Card title</h4>
-            <h6 class="card-subtitle mb-2 text-muted text-light">
-              Card subtitle
-            </h6>
-            <p class="card-text text-light">
-              Some quick example text to build on the card title and make up the
-              bulk of the card's content.
-            </p>
-            <a href="#" class="card-link text-light">Card link</a>
-          </div>
-        </div>
-        <div class="card col-3 box bg-dark" style="border-radius: 1em">
+        <div class="card col-sm box bg-dark" style="border-radius: 1em">
           <div class="card-body">
             <h4 class="card-title text-light">Card title</h4>
             <h6 class="card-subtitle mb-2 text-muted text-light">
@@ -200,7 +160,7 @@
         </div>
       </div>
       <div class="row d-flex justify-content-center">
-        <div class="card col-3 box bg-dark" style="border-radius: 1em">
+        <div class="card col-sm box bg-dark" style="border-radius: 1em">
           <div class="card-body">
             <h4 class="card-title text-light">Card title</h4>
             <h6 class="card-subtitle mb-2 text-muted text-light">
@@ -213,7 +173,7 @@
             <a href="#" class="card-link text-light">Card link</a>
           </div>
         </div>
-        <div class="card col-3 box bg-dark" style="border-radius: 1em">
+        <div class="card col-sm box bg-dark" style="border-radius: 1em">
           <div class="card-body">
             <h4 class="card-title text-light">Card title</h4>
             <h6 class="card-subtitle mb-2 text-muted text-light">
@@ -226,7 +186,48 @@
             <a href="#" class="card-link text-light">Card link</a>
           </div>
         </div>
-        <div class="card col-3 box bg-dark" style="border-radius: 1em">
+        <div class="card col-sm box bg-dark" style="border-radius: 1em">
+          <div class="card-body">
+            <h4 class="card-title text-light">Card title</h4>
+            <h6 class="card-subtitle mb-2 text-muted text-light">
+              Card subtitle
+            </h6>
+            <p class="card-text text-light">
+              Some quick example text to build on the card title and make up the
+              bulk of the card's content.
+            </p>
+            <a href="#" class="card-link text-light">Card link</a>
+          </div>
+        </div>
+      </div>
+      <div class="row d-flex justify-content-center">
+        <div class="card col-sm box bg-dark" style="border-radius: 1em">
+          <div class="card-body">
+            <h4 class="card-title text-light">Card title</h4>
+            <h6 class="card-subtitle mb-2 text-muted text-light">
+              Card subtitle
+            </h6>
+            <p class="card-text text-light">
+              Some quick example text to build on the card title and make up the
+              bulk of the card's content.
+            </p>
+            <a href="#" class="card-link text-light">Card link</a>
+          </div>
+        </div>
+        <div class="card col-sm box bg-dark" style="border-radius: 1em">
+          <div class="card-body">
+            <h4 class="card-title text-light">Card title</h4>
+            <h6 class="card-subtitle mb-2 text-muted text-light">
+              Card subtitle
+            </h6>
+            <p class="card-text text-light">
+              Some quick example text to build on the card title and make up the
+              bulk of the card's content.
+            </p>
+            <a href="#" class="card-link text-light">Card link</a>
+          </div>
+        </div>
+        <div class="card col-sm box bg-dark" style="border-radius: 1em">
           <div class="card-body">
             <h4 class="card-title text-light">Card title</h4>
             <h6 class="card-subtitle mb-2 text-muted text-light">

@@ -52,11 +52,11 @@ export class User {
       // username
       username: login,
       // bio
-      bio: bio,
+      bio: bio ? bio : `My name is ${this.name} and I love to code!`,
       // github profile link
       link: `github.com/${login}`,
       // languages user used recently
-      languages: topLang,
+      languages: topLang ? topLang : "None at the moment.",
     };
     return profileData;
   }
