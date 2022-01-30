@@ -23,7 +23,6 @@ async function userProfile(username) {
 // function to create user profile card
 async function makeProfileCard(profileData) {
   const { avatar, name, username, languages, bio, link } = profileData;
-  console.log(link);
   // get x marks the spot for profile card
   let profile = document.querySelector('#profile');
   // first clear profile from previous search
