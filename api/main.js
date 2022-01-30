@@ -10,7 +10,13 @@ const input = document.querySelector('input');
 form.addEventListener('submit', getUsername);
 
 function getUsername(event) {
+  // dont let form refresh page when submitted
   event.preventDefault();
-  // the input tag is the one with the value property
-  console.log(input.value);
+  // the input tag is the one with the value property (username)
+  const username = input.value;
+  if (username === 'Starbz') {
+    input.classList.add('is-invalid');
+  } else {
+    input.classList.remove('is-invalid');
+  }
 }
