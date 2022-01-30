@@ -36,29 +36,35 @@ export class User {
     // GET
     const requestURL = `${this.API_URL}${userName}`;
     const response = await fetch(requestURL);
-    const user = await response.json();
-    // grab metadata from user object
-    const { avatar_url, name, login, bio } = user;
-    // get repos for user
-    const userRepos = await this.getRepos(user);
-    // get users top languages
-    const topLang = await this.getLanguages(userRepos);
-    // return user object with profile data
-    const profileData = {
-      // avatar
-      avatar: avatar_url,
-      // name
-      name: name,
-      // username
-      username: login,
-      // bio
-      bio: bio ? bio : `My name is ${this.name} and I love to code!`,
-      // github profile link
-      link: `github.com/${login}`,
-      // languages user used recently
-      languages: topLang ? topLang : "None at the moment.",
-    };
-    return profileData;
+    // if user exists, grab their metadata
+    if (response.ok) {
+      const user = await response.json();
+      // grab metadata from user object
+      const { avatar_url, name, login, bio } = user;
+      // get repos for user
+      const userRepos = await this.getRepos(user);
+      // get users top languages
+      const topLang = await this.getLanguages(userRepos);
+      // return user object with profile data
+      const profileData = {
+        // avatar
+        avatar: avatar_url,
+        // name
+        name: name,
+        // username
+        username: login,
+        // bio
+        bio: bio ? bio : `My name is ${name} and I love to code!`,
+        // github profile link
+        link: `github.com/${login}`,
+        // languages user used recently
+        languages: topLang[1] ? topLang[1] : 'None at the moment.',
+      };
+      return profileData;
+    } else {
+      return 'Profile not found.';
+    }
+    // if user does not exist, show error
   }
 }
 
