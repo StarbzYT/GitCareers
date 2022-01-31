@@ -23,6 +23,7 @@ async function userProfile(username) {
 // function to create user profile card
 async function makeProfileCard(profileData) {
   const { avatar, name, username, languages, bio, link } = profileData;
+  console.log(languages);
   // get x marks the spot for profile card
   let profile = document.querySelector('#profile');
   // first clear profile from previous search
@@ -43,7 +44,16 @@ async function makeProfileCard(profileData) {
           />
         </div>
         <h4 class="card-title text-light text-center">${name}</h4>
-        <p class="card-text text-light text-center">Top-Language: ${languages}</p>
+        <p class="card-text text-light text-center">Top-Languages: ${
+          Array.isArray(languages)
+            ? // if languages are different add a comma then space ONLY IF both are DEFINED
+              (languages[0] && languages[1]
+              ? languages[0] + ', ' + languages[1]
+              : // if one language is defined and the other is not, then ONLY show the first language
+                languages[0] || languages[1])
+            : // if languages isnt an array (only one language), then just show it raw
+              languages
+        }</p>
         <p class="card-text text-light text-center">Bio: ${bio}</p>
         <p class="card-text text-light text-center">
           GitHub Profile:

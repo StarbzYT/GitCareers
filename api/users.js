@@ -26,6 +26,13 @@ export class User {
     // for each repo, select the language and put into array
     const commonLangs = recentRepos.map((repo) => repo.language);
     // extract topLang1 from commonLangs and choose the 2nd top language
+    // if languages of recent repos are the same, only return 1
+    if (
+      commonLangs[commonLangs.length - 1] ===
+      commonLangs[commonLangs.length - 2]
+    ) {
+      return commonLangs[commonLangs.length - 1]; // just return recent (no duplicates)
+    }
     return [
       commonLangs[commonLangs.length - 1],
       commonLangs[commonLangs.length - 2],
@@ -50,15 +57,15 @@ export class User {
         // avatar
         avatar: avatar_url,
         // name
-        name: name,
+        name: name ? name : 'N/A',
         // username
         username: login,
         // bio
-        bio: bio ? bio : `My name is ${name} and I love to code!`,
+        bio: bio ? bio : `My name is ${name || 'N/A'} and I love to code!`,
         // github profile link
         link: `github.com/${login}`,
         // languages user used recently
-        languages: topLang[1] ? topLang[1] : 'None at the moment.',
+        languages: topLang[0] || topLang[1] ? topLang : 'None at the moment.',
       };
       return profileData;
     } else {
