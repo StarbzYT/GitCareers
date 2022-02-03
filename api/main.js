@@ -47,10 +47,10 @@ async function makeProfileCard(profileData) {
         <p class="card-text text-light text-center">Top-Languages: ${
           Array.isArray(languages)
             ? // if languages are different add a comma then space ONLY IF both are DEFINED
-              (languages[0] && languages[1]
+              languages[0] && languages[1]
               ? languages[0] + ', ' + languages[1]
               : // if one language is defined and the other is not, then ONLY show the first language
-                languages[0] || languages[1])
+                languages[0] || languages[1] // otherwise, show the truthy one
             : // if languages isnt an array (only one language), then just show it raw
               languages
         }</p>

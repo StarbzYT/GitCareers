@@ -51,7 +51,11 @@ export class User {
       // get repos for user
       const userRepos = await this.getRepos(user);
       // get users top languages
-      const topLang = await this.getLanguages(userRepos);
+      let topLang = await this.getLanguages(userRepos);
+      // check if top lang is undefined, if it is, change its value
+      if (!topLang) {
+        topLang = [undefined, undefined];
+      }
       // return user object with profile data
       const profileData = {
         // avatar
@@ -65,6 +69,7 @@ export class User {
         // github profile link
         link: `github.com/${login}`,
         // languages user used recently
+        // if user has atleast lang, show whole array, but if both langs are undefined, say None at the moment
         languages: topLang[0] || topLang[1] ? topLang : 'None at the moment.',
       };
       return profileData;
