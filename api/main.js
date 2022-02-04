@@ -30,9 +30,9 @@ async function makeProfileCard(profileData) {
   // first clear profile from previous search
   profile.innerHTML = '';
   // create html card for profile
-  const html = `<div class="row d-flex justify-content-center">
+  const html = `<div class="row mx-3 d-flex justify-content-center">
     <div
-      class="card bg-dark mb-3"
+      class="card bg-dark m-3"
       style="max-width: 40rem; border-radius: 1em"
     >
       <div class="card-body">
@@ -76,10 +76,10 @@ async function getUserJobs(language) {
 // make user jobs cards
 async function makeJobsCards(jobsData) {
   let jobs = document.querySelector('#jobs');
-  let jobsCards = `
-    <div class="container">
-    <div class="row d-flex justify-content-center">
-      <div class="card col-sm box bg-dark" style="border-radius: 1em">
+  // wipe previous jobs from previous search
+  jobs.innerHTML = '';
+  let html = `
+      <div class="card col-sm-4 box bg-dark" style="border-radius: 1em">
         <div class="card-body">
           <h4 class="card-title text-light">Javascript Developer</h4>
           <h6 class="card-subtitle mb-2 text-muted text-light">Intertec</h6>
@@ -91,116 +91,19 @@ async function makeJobsCards(jobsData) {
           <a href="#" class="card-link text-light">Card link</a>
         </div>
       </div>
-      <div class="card col-sm box bg-dark" style="border-radius: 1em">
+      <div class="card col-sm-4 box bg-dark" style="border-radius: 1em">
         <div class="card-body">
-          <h4 class="card-title text-light">Card title</h4>
-          <h6 class="card-subtitle mb-2 text-muted text-light">
-            Card subtitle
-          </h6>
+          <h4 class="card-title text-light">Javascript Developer</h4>
+          <h6 class="card-subtitle mb-2 text-muted text-light">Intertec</h6>
           <p class="card-text text-light">
-            Some quick example text to build on the card title and make up the
-            bulk of the card's content.
+            Location: Marlow, Buckinghamshire <br />
+            Permanent Full-time <br />
+            Posted: 2013-11-08T18:07:39Z
           </p>
           <a href="#" class="card-link text-light">Card link</a>
         </div>
-      </div>
-      <div class="card col-sm box bg-dark" style="border-radius: 1em">
-        <div class="card-body">
-          <h4 class="card-title text-light">Card title</h4>
-          <h6 class="card-subtitle mb-2 text-muted text-light">
-            Card subtitle
-          </h6>
-          <p class="card-text text-light">
-            Some quick example text to build on the card title and make up the
-            bulk of the card's content.
-          </p>
-          <a href="#" class="card-link text-light">Card link</a>
-        </div>
-      </div>
-    </div>
-    <div class="row d-flex justify-content-center">
-      <div class="card col-sm box bg-dark" style="border-radius: 1em">
-        <div class="card-body">
-          <h4 class="card-title text-light">Card title</h4>
-          <h6 class="card-subtitle mb-2 text-muted text-light">
-            Card subtitle
-          </h6>
-          <p class="card-text text-light">
-            Some quick example text to build on the card title and make up the
-            bulk of the card's content.
-          </p>
-          <a href="#" class="card-link text-light">Card link</a>
-        </div>
-      </div>
-      <div class="card col-sm box bg-dark" style="border-radius: 1em">
-        <div class="card-body">
-          <h4 class="card-title text-light">Card title</h4>
-          <h6 class="card-subtitle mb-2 text-muted text-light">
-            Card subtitle
-          </h6>
-          <p class="card-text text-light">
-            Some quick example text to build on the card title and make up the
-            bulk of the card's content.
-          </p>
-          <a href="#" class="card-link text-light">Card link</a>
-        </div>
-      </div>
-      <div class="card col-sm box bg-dark" style="border-radius: 1em">
-        <div class="card-body">
-          <h4 class="card-title text-light">Card title</h4>
-          <h6 class="card-subtitle mb-2 text-muted text-light">
-            Card subtitle
-          </h6>
-          <p class="card-text text-light">
-            Some quick example text to build on the card title and make up the
-            bulk of the card's content.
-          </p>
-          <a href="#" class="card-link text-light">Card link</a>
-        </div>
-      </div>
-    </div>
-    <div class="row d-flex justify-content-center">
-      <div class="card col-sm box bg-dark" style="border-radius: 1em">
-        <div class="card-body">
-          <h4 class="card-title text-light">Card title</h4>
-          <h6 class="card-subtitle mb-2 text-muted text-light">
-            Card subtitle
-          </h6>
-          <p class="card-text text-light">
-            Some quick example text to build on the card title and make up the
-            bulk of the card's content.
-          </p>
-          <a href="#" class="card-link text-light">Card link</a>
-        </div>
-      </div>
-      <div class="card col-sm box bg-dark" style="border-radius: 1em">
-        <div class="card-body">
-          <h4 class="card-title text-light">Card title</h4>
-          <h6 class="card-subtitle mb-2 text-muted text-light">
-            Card subtitle
-          </h6>
-          <p class="card-text text-light">
-            Some quick example text to build on the card title and make up the
-            bulk of the card's content.
-          </p>
-          <a href="#" class="card-link text-light">Card link</a>
-        </div>
-      </div>
-      <div class="card col-sm box bg-dark" style="border-radius: 1em">
-        <div class="card-body">
-          <h4 class="card-title text-light">Card title</h4>
-          <h6 class="card-subtitle mb-2 text-muted text-light">
-            Card subtitle
-          </h6>
-          <p class="card-text text-light">
-            Some quick example text to build on the card title and make up the
-            bulk of the card's content.
-          </p>
-          <a href="#" class="card-link text-light">Card link</a>
-        </div>
-      </div>
-    </div>
-  </div>`;
+      </div>`;
+  jobs.innerHTML += html;
 }
 // main function to get username and display porfolio and jobs
 async function getUsername(event) {
