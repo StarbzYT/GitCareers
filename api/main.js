@@ -73,7 +73,135 @@ async function getUserJobs(language) {
   const jobs = await newList.getJobList(language);
   return jobs;
 }
-
+// make user jobs cards
+async function makeJobsCards(jobsData) {
+  let jobs = document.querySelector('#jobs');
+  let jobsCards = `
+    <div class="container">
+    <div class="row d-flex justify-content-center">
+      <div class="card col-sm box bg-dark" style="border-radius: 1em">
+        <div class="card-body">
+          <h4 class="card-title text-light">Javascript Developer</h4>
+          <h6 class="card-subtitle mb-2 text-muted text-light">Intertec</h6>
+          <p class="card-text text-light">
+            Location: Marlow, Buckinghamshire <br />
+            Permanent Full-time <br />
+            Posted: 2013-11-08T18:07:39Z
+          </p>
+          <a href="#" class="card-link text-light">Card link</a>
+        </div>
+      </div>
+      <div class="card col-sm box bg-dark" style="border-radius: 1em">
+        <div class="card-body">
+          <h4 class="card-title text-light">Card title</h4>
+          <h6 class="card-subtitle mb-2 text-muted text-light">
+            Card subtitle
+          </h6>
+          <p class="card-text text-light">
+            Some quick example text to build on the card title and make up the
+            bulk of the card's content.
+          </p>
+          <a href="#" class="card-link text-light">Card link</a>
+        </div>
+      </div>
+      <div class="card col-sm box bg-dark" style="border-radius: 1em">
+        <div class="card-body">
+          <h4 class="card-title text-light">Card title</h4>
+          <h6 class="card-subtitle mb-2 text-muted text-light">
+            Card subtitle
+          </h6>
+          <p class="card-text text-light">
+            Some quick example text to build on the card title and make up the
+            bulk of the card's content.
+          </p>
+          <a href="#" class="card-link text-light">Card link</a>
+        </div>
+      </div>
+    </div>
+    <div class="row d-flex justify-content-center">
+      <div class="card col-sm box bg-dark" style="border-radius: 1em">
+        <div class="card-body">
+          <h4 class="card-title text-light">Card title</h4>
+          <h6 class="card-subtitle mb-2 text-muted text-light">
+            Card subtitle
+          </h6>
+          <p class="card-text text-light">
+            Some quick example text to build on the card title and make up the
+            bulk of the card's content.
+          </p>
+          <a href="#" class="card-link text-light">Card link</a>
+        </div>
+      </div>
+      <div class="card col-sm box bg-dark" style="border-radius: 1em">
+        <div class="card-body">
+          <h4 class="card-title text-light">Card title</h4>
+          <h6 class="card-subtitle mb-2 text-muted text-light">
+            Card subtitle
+          </h6>
+          <p class="card-text text-light">
+            Some quick example text to build on the card title and make up the
+            bulk of the card's content.
+          </p>
+          <a href="#" class="card-link text-light">Card link</a>
+        </div>
+      </div>
+      <div class="card col-sm box bg-dark" style="border-radius: 1em">
+        <div class="card-body">
+          <h4 class="card-title text-light">Card title</h4>
+          <h6 class="card-subtitle mb-2 text-muted text-light">
+            Card subtitle
+          </h6>
+          <p class="card-text text-light">
+            Some quick example text to build on the card title and make up the
+            bulk of the card's content.
+          </p>
+          <a href="#" class="card-link text-light">Card link</a>
+        </div>
+      </div>
+    </div>
+    <div class="row d-flex justify-content-center">
+      <div class="card col-sm box bg-dark" style="border-radius: 1em">
+        <div class="card-body">
+          <h4 class="card-title text-light">Card title</h4>
+          <h6 class="card-subtitle mb-2 text-muted text-light">
+            Card subtitle
+          </h6>
+          <p class="card-text text-light">
+            Some quick example text to build on the card title and make up the
+            bulk of the card's content.
+          </p>
+          <a href="#" class="card-link text-light">Card link</a>
+        </div>
+      </div>
+      <div class="card col-sm box bg-dark" style="border-radius: 1em">
+        <div class="card-body">
+          <h4 class="card-title text-light">Card title</h4>
+          <h6 class="card-subtitle mb-2 text-muted text-light">
+            Card subtitle
+          </h6>
+          <p class="card-text text-light">
+            Some quick example text to build on the card title and make up the
+            bulk of the card's content.
+          </p>
+          <a href="#" class="card-link text-light">Card link</a>
+        </div>
+      </div>
+      <div class="card col-sm box bg-dark" style="border-radius: 1em">
+        <div class="card-body">
+          <h4 class="card-title text-light">Card title</h4>
+          <h6 class="card-subtitle mb-2 text-muted text-light">
+            Card subtitle
+          </h6>
+          <p class="card-text text-light">
+            Some quick example text to build on the card title and make up the
+            bulk of the card's content.
+          </p>
+          <a href="#" class="card-link text-light">Card link</a>
+        </div>
+      </div>
+    </div>
+  </div>`;
+}
 // main function to get username and display porfolio and jobs
 async function getUsername(event) {
   // show loading
@@ -94,19 +222,20 @@ async function getUsername(event) {
     // check user's languages to get their jobs
     const languages = userData.languages; // lang array
     // if user has just one top lang (lang is NOT array)
+    // initialize jobslists to use in function scope
+    let language1, language2, jobsList1, jobsList2, jobs;
     if (!Array.isArray(languages)) {
       // call function on one language
-      const jobs = await getUserJobs(languages);
-      console.log(jobs);
+      jobs = await getUserJobs(languages);
     } else {
-      const language1 = languages[0];
-      const language2 = languages[1];
-      const jobsList1 = await getUserJobs(language1);
-      const jobsList2 = await getUserJobs(language2);
-      console.log(jobsList1, jobsList2);
+      language1 = languages[0];
+      language2 = languages[1];
+      jobsList1 = await getUserJobs(language1);
+      jobsList2 = await getUserJobs(language2);
     }
     // render profile and jobs data after all operations are complete
     makeProfileCard(userData);
+    makeJobsCards(jobs);
     // hide loading
     loading.style.display = 'none';
   }
