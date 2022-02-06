@@ -78,32 +78,26 @@ async function makeJobsCards(jobsData) {
   let jobs = document.querySelector('#jobs');
   // wipe previous jobs from previous search
   jobs.innerHTML = '';
-  let html = `
-      <div class="card col-sm-4 box bg-dark" style="border-radius: 1em">
-        <div class="card-body">
-          <h4 class="card-title text-light">Javascript Developer</h4>
-          <h6 class="card-subtitle mb-2 text-muted text-light">Intertec</h6>
-          <p class="card-text text-light">
-            Location: Marlow, Buckinghamshire <br />
-            Permanent Full-time <br />
-            Posted: 2013-11-08T18:07:39Z
-          </p>
-          <a href="#" class="card-link text-light">Card link</a>
+  jobsData.forEach((job) => {
+    // pluck data for each card off objects
+    const { title, company, created, location, salary_max, redirect_url } = job;
+    let html = `
+        <div class="card m-3 col-sm-3 bg-dark" style="border-radius: 1em">
+          <div class="card-body">
+            <h4 class="card-title text-light">${title}</h4>
+            <h6 class="card-subtitle mb-2 text-muted text-light">${company.display_name}</h6>
+            <p class="card-text text-light">
+              Location: ${location.display_name} <br />
+              Max-Salary: $${salary_max} <br />
+              Posted: ${created}
+            </p>
+            <a href="${redirect_url}" class="card-link text-light" target="_blank" rel="noopener noreferrer">Apply</a>
+          </div>
         </div>
-      </div>
-      <div class="card col-sm-4 box bg-dark" style="border-radius: 1em">
-        <div class="card-body">
-          <h4 class="card-title text-light">Javascript Developer</h4>
-          <h6 class="card-subtitle mb-2 text-muted text-light">Intertec</h6>
-          <p class="card-text text-light">
-            Location: Marlow, Buckinghamshire <br />
-            Permanent Full-time <br />
-            Posted: 2013-11-08T18:07:39Z
-          </p>
-          <a href="#" class="card-link text-light">Card link</a>
-        </div>
-      </div>`;
-  jobs.innerHTML += html;
+        `;
+    // after each card is made per job, add to page
+    jobs.innerHTML += html;
+  });
 }
 // main function to get username and display porfolio and jobs
 async function getUsername(event) {
@@ -123,6 +117,8 @@ async function getUsername(event) {
     // if user was found proceed
     input.classList.remove('is-invalid'); // if there was error before, remove error styling
     // check user's languages to get their jobs
+    // render profile
+    makeProfileCard(userData);
     const languages = userData.languages; // lang array
     // if user has just one top lang (lang is NOT array)
     // initialize jobslists to use in function scope
@@ -130,15 +126,15 @@ async function getUsername(event) {
     if (!Array.isArray(languages)) {
       // call function on one language
       jobs = await getUserJobs(languages);
+      console.log(jobs);
+      // render jobs
+      makeJobsCards(jobs);
     } else {
       language1 = languages[0];
       language2 = languages[1];
       jobsList1 = await getUserJobs(language1);
       jobsList2 = await getUserJobs(language2);
     }
-    // render profile and jobs data after all operations are complete
-    makeProfileCard(userData);
-    makeJobsCards(jobs);
     // hide loading
     loading.style.display = 'none';
   }
