@@ -85,10 +85,14 @@ async function makeJobsCards(jobsData) {
         <div class="card m-3 col-sm-3 bg-dark" style="border-radius: 1em">
           <div class="card-body">
             <h4 class="card-title text-light">${title}</h4>
-            <h6 class="card-subtitle mb-2 text-muted text-light">${company.display_name}</h6>
+            <h6 class="card-subtitle mb-2 text-muted text-light">${
+              company.display_name
+            }</h6>
             <p class="card-text text-light">
               Location: ${location.display_name} <br />
-              Max-Salary: $${salary_max} <br />
+              Max-Salary: ${
+                salary_max ? '$' + salary_max : 'Undisclosed'
+              } <br />
               Posted: ${created}
             </p>
             <a href="${redirect_url}" class="card-link text-light" target="_blank" rel="noopener noreferrer">Apply</a>
@@ -120,13 +124,13 @@ async function getUsername(event) {
     // render profile
     makeProfileCard(userData);
     const languages = userData.languages; // lang array
+    console.log(languages);
     // if user has just one top lang (lang is NOT array)
     // initialize jobslists to use in function scope
     let language1, language2, jobsList1, jobsList2, jobs;
     if (!Array.isArray(languages)) {
       // call function on one language
       jobs = await getUserJobs(languages);
-      console.log(jobs);
       // render jobs
       makeJobsCards(jobs);
     } else {
@@ -134,6 +138,10 @@ async function getUsername(event) {
       language2 = languages[1];
       jobsList1 = await getUserJobs(language1);
       jobsList2 = await getUserJobs(language2);
+      // merge both lists together to call on jobs card function
+      const finalJobList = jobsList1.slice(0, 5).concat(jobsList2.slice(0, 4));
+      // make cards based on merged array
+      makeJobsCards(finalJobList);
     }
     // hide loading
     loading.style.display = 'none';
