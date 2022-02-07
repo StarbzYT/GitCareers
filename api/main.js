@@ -68,7 +68,7 @@ async function makeProfileCard(profileData) {
 }
 // render jobs based on top languages for each user
 async function getUserJobs(language) {
-  const URL = `https://api.adzuna.com/v1/api/jobs/ca/search/1?app_id=${APP_ID}&app_key=${API_KEY}&results_per_page=9&what=`;
+  const URL = `https://api.adzuna.com/v1/api/jobs/ca/search/1?app_id=${APP_ID}&app_key=${API_KEY}&results_per_page=9&title_only=internship&what=`;
   const newList = new JobList(URL);
   const jobs = await newList.getJobList(language);
   return jobs;
@@ -124,7 +124,6 @@ async function getUsername(event) {
     // render profile
     makeProfileCard(userData);
     const languages = userData.languages; // lang array
-    console.log(languages);
     // if user has just one top lang (lang is NOT array)
     // initialize jobslists to use in function scope
     let language1, language2, jobsList1, jobsList2, jobs;
