@@ -10,6 +10,10 @@ const form = document.querySelector('form');
 const input = document.querySelector('input');
 // get loading tag and set style to none
 const loading = document.querySelector('#loading');
+// get country from drop down
+const countryName = document.querySelector('#country');
+// grab checkbox for internships
+const internships = document.querySelector('#intern');
 loading.style.display = 'none';
 // listen for submit event listener
 form.addEventListener('submit', getUsername);
@@ -67,8 +71,24 @@ async function makeProfileCard(profileData) {
   profile.innerHTML += html;
 }
 // render jobs based on top languages for each user
-async function getUserJobs(language) {
-  const URL = `https://api.adzuna.com/v1/api/jobs/ca/search/1?app_id=${APP_ID}&app_key=${API_KEY}&results_per_page=9&title_only=internship&what=`;
+async function getUserJobs(language, country) {
+  // map countries in drop down to api selections
+  const countries = {
+    Canada: 'ca',
+    'United States': 'us',
+    'Great Britain': 'gb',
+    Australia: 'au',
+    'New Zealand': 'nz',
+    India: 'in',
+  };
+  let URL;
+  // if checkbox is checked, modify url to look for internships
+  if (internships.checked) {
+    URL = `https://api.adzuna.com/v1/api/jobs/${countries[country]}/search/1?app_id=${APP_ID}&app_key=${API_KEY}&results_per_page=9&title_only=internship&what=`;
+  } else {
+    // if checkbox if not checked, then look for fulltime jobs
+    URL = `https://api.adzuna.com/v1/api/jobs/${countries[country]}/search/1?app_id=${APP_ID}&app_key=${API_KEY}&results_per_page=9&what=`;
+  }
   const newList = new JobList(URL);
   const jobs = await newList.getJobList(language);
   return jobs;
@@ -124,19 +144,20 @@ async function getUsername(event) {
     // render profile
     makeProfileCard(userData);
     const languages = userData.languages; // lang array
+    const country = countryName.value;
     // if user has just one top lang (lang is NOT array)
     // initialize jobslists to use in function scope
     let language1, language2, jobsList1, jobsList2, jobs;
     if (!Array.isArray(languages)) {
       // call function on one language
-      jobs = await getUserJobs(languages);
+      jobs = await getUserJobs(languages, country);
       // render jobs
       makeJobsCards(jobs);
     } else {
       language1 = languages[0];
       language2 = languages[1];
-      jobsList1 = await getUserJobs(language1);
-      jobsList2 = await getUserJobs(language2);
+      jobsList1 = await getUserJobs(language1, country);
+      jobsList2 = await getUserJobs(language2, country);
       // merge both lists together to call on jobs card function
       const finalJobList = jobsList1.slice(0, 5).concat(jobsList2.slice(0, 4));
       // make cards based on merged array
