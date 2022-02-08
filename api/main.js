@@ -95,7 +95,6 @@ async function getUserJobs(language, country) {
 }
 // make user jobs cards
 async function makeJobsCards(jobsData) {
-  console.log(jobsData);
   let jobs = document.querySelector('#jobs');
   // wipe previous jobs from previous search
   jobs.innerHTML = '';
@@ -126,7 +125,7 @@ async function makeJobsCards(jobsData) {
   // create email form to send job posts to user's email
   const emailForm = `
   <h4 class="text-light text-center mt-5">Save job postings for later?</h4>
-  <div class="form-group has-success mt-2 mb-5" style="max-width: 50vh">
+  <div class="form-group has-success mt-2 mb-5" id="email-form" style="max-width: 50vh">
     <div class="input-group">
       <input
         type="email"
@@ -143,7 +142,7 @@ async function makeJobsCards(jobsData) {
       >
         Send
       </button>
-      <div class="valid-feedback">Email sent!</div>
+      <div class="valid-feedback" id="success-message">Email sent!</div>
     </div>
   </div>
   `;
