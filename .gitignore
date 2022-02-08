@@ -1,2 +1,3 @@
-apiAuth.jssendgrid.env
+sendgrid.env
 node_modules
+apiAuth.js
