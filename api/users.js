@@ -79,23 +79,3 @@ export class User {
     // if user does not exist, show error
   }
 }
-
-// example of how we would use this class in main.js
-// const newUser = new User("https://api.github.com/users/");
-
-// async function userProfile(user) {
-//     const userProfile = await newUser.getUserProfile("StarbzYT");
-//     console.log(userProfile);
-// }
-// userProfile(newUser);
-// newUser.getUserProfile("bhavjitChauhan")
-//     .then((userData) => {
-//         console.log(userData);
-//         // newUser.getRepos(userData)
-//         //     .then((repoData) => {
-//         //         newUser.getLanguages(repoData)
-//         //             .then((recentRepos) => {
-//         //                 console.log(recentRepos);
-//         //             })
-//         //     })
-//     })

@@ -26,7 +26,7 @@ async function userProfile(username) {
   const userProfile = await newUser.getUserProfile(username);
   return userProfile;
 }
-// function to create user profile card
+// function to create user profile card and email form
 async function makeProfileCard(profileData) {
   const { avatar, name, username, languages, bio, link } = profileData;
   // get x marks the spot for profile card
@@ -122,6 +122,31 @@ async function makeJobsCards(jobsData) {
     // after each card is made per job, add to page
     jobs.innerHTML += html;
   });
+  // create email form to send job posts to user's email
+  const emailForm = `
+  <h4 class="text-light text-center mt-5">Save job postings for later?</h4>
+  <div class="form-group has-success mt-2 mb-5" style="max-width: 50vh">
+    <div class="input-group">
+      <input
+        type="email"
+        placeholder="Email"
+        required
+        class="form-control is-valid"
+        id="inputValid"
+        style="border-radius: 1em 0em 0em 1em"
+      />
+      <button
+        type="submit"
+        class="btn btn-success"
+        style="border-radius: 0em 1em 1em 0em"
+      >
+        Send
+      </button>
+      <div class="valid-feedback">Email sent!</div>
+    </div>
+  </div>
+  `;
+  jobs.innerHTML += emailForm;
 }
 // main function to get username and display porfolio and jobs
 async function getUsername(event) {
