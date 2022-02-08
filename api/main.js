@@ -95,6 +95,7 @@ async function getUserJobs(language, country) {
 }
 // make user jobs cards
 async function makeJobsCards(jobsData) {
+  console.log(jobsData);
   let jobs = document.querySelector('#jobs');
   // wipe previous jobs from previous search
   jobs.innerHTML = '';
@@ -146,7 +147,10 @@ async function makeJobsCards(jobsData) {
     </div>
   </div>
   `;
-  jobs.innerHTML += emailForm;
+  // if the user gets jobs from us, show email form to save jobs, otherwise dont show it
+  if (jobsData.length != 0) {
+    jobs.innerHTML += emailForm;
+  }
 }
 // main function to get username and display porfolio and jobs
 async function getUsername(event) {
