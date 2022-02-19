@@ -94,22 +94,27 @@ async function getUserJobs(language, country) {
   return jobs;
 }
 // send email to user when email form is submitted
-async function sendEmail(email) {
-  const data = {
-    email,
-  };
+async function sendEmail(event) {
+  event.preventDefault();
+  const emailForm = document.querySelector('#email-input');
+  const send = emailForm.value;
+  console.log(send);
   // fetch email end po
-  const response = await fetch('/email', {
+  const response = await fetch('http://localhost:5500/email', {
     method: 'POST',
+    credentials: 'include',
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify(data),
+    body: JSON.stringify({
+      email: send,
+    }),
   });
   const success = response.json();
+  console.log(success);
   return success;
 }
-// make user jobs cards
+// make user jobs cards and email form
 async function makeJobsCards(jobsData) {
   let jobs = document.querySelector('#jobs');
   // wipe previous jobs from previous search
@@ -139,19 +144,20 @@ async function makeJobsCards(jobsData) {
     jobs.innerHTML += html;
   });
   // create email form to send job posts to user's email
-  const emailForm = `
+  const email = `
   <h4 class="text-light text-center mt-5">Save job postings for later?</h4>
   <div class="form-group has-success mt-2 mb-5" id="email-form" style="max-width: 50vh">
     <div class="input-group">
       <input
+        id = "email-input"
         type="email"
         placeholder="Email"
         required
         class="form-control is-valid"
-        id="email"
         style="border-radius: 1em 0em 0em 1em"
       />
       <button
+        id="email"
         type="submit"
         class="btn btn-success"
         style="border-radius: 0em 1em 1em 0em"
@@ -164,10 +170,12 @@ async function makeJobsCards(jobsData) {
   `;
   // if the user gets jobs from us, show email form to save jobs, otherwise dont show it
   if (jobsData.length != 0) {
-    jobs.innerHTML += emailForm;
+    jobs.innerHTML += email;
     // get email form if jobs are displayed
-    const emailForm = document.querySelector('#email');
-    emailForm.addEventListener('submit', sendEmail);
+    const emailButton = document.querySelector('#email');
+    console.log(`${emailButton}`);
+    // once form is submitted, send email
+    emailButton.addEventListener('click', sendEmail);
   }
 }
 // main function to get username and display porfolio and jobs
