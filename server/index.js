@@ -1,5 +1,5 @@
 // import email function to send emails for POST
-const sendEmail = require('./emails');
+const mail = require('./emails');
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
@@ -12,7 +12,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.post('/email', (req, res) => {
   // send back email to user
   const email = req.body;
-  res.send(email);
+  res.send(mail.sendEmail(email, 'hello from gitcareers'));
 });
 
 // listen on port 5500

@@ -93,6 +93,22 @@ async function getUserJobs(language, country) {
   const jobs = await newList.getJobList(language);
   return jobs;
 }
+// send email to user when email form is submitted
+async function sendEmail(email) {
+  const data = {
+    email,
+  };
+  // fetch email end po
+  const response = await fetch('/email', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data),
+  });
+  const success = response.json();
+  return success;
+}
 // make user jobs cards
 async function makeJobsCards(jobsData) {
   let jobs = document.querySelector('#jobs');
@@ -132,7 +148,7 @@ async function makeJobsCards(jobsData) {
         placeholder="Email"
         required
         class="form-control is-valid"
-        id="inputValid"
+        id="email"
         style="border-radius: 1em 0em 0em 1em"
       />
       <button
@@ -149,6 +165,9 @@ async function makeJobsCards(jobsData) {
   // if the user gets jobs from us, show email form to save jobs, otherwise dont show it
   if (jobsData.length != 0) {
     jobs.innerHTML += emailForm;
+    // get email form if jobs are displayed
+    const emailForm = document.querySelector('#email');
+    emailForm.addEventListener('submit', sendEmail);
   }
 }
 // main function to get username and display porfolio and jobs

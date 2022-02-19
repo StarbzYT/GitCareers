@@ -21,6 +21,4 @@ function sendEmail(email, message) {
     });
 }
 
-sendEmail('chhokaradarsh@gmail.com', 'hello from gitcareers');
-
 exports.sendEmail = sendEmail;
