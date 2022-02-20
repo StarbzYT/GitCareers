@@ -18,14 +18,17 @@ app.use((req, res, next) => {
 
 // get data off post request
 app.use(bodyParser.urlencoded({ extended: true }));
+// middleware for json body (email)
 app.use(bodyParser.json());
 // post request to send email to user
 // email service
 app.post('/email', (req, res) => {
   // send back email to user
   const email = req.body.email;
+  const jobsMessage = req.body.message;
   console.log(email);
-  res.send(mail.sendEmail(email, 'hello from gitcareers'));
+  console.log(jobsMessage);
+  res.send(mail.sendEmail(email, jobsMessage));
 });
 
 // listen on port 5500

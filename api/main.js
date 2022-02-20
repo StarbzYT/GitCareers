@@ -17,7 +17,8 @@ const internships = document.querySelector('#intern');
 loading.style.display = 'none';
 // listen for submit event listener
 form.addEventListener('submit', getUsername);
-
+// global job links string for email
+let jobLinks = `<br><img style="max-width: 5%" src="https://blogger.googleusercontent.com/img/a/AVvXsEhlHH43mF0_mZlPDru-SOF680CkR7pz3fenAm9UnyN9tJhNXJGB4C9q6ArTPU8o2ijcA5QZrVmhf-9uBVtv2FljqTJ_5qYKAtkC3ZqMSoetvIFXW_9Xu-a8L-MXadtOK8_7Xx6Cu0_oFEm-Fru43lea2eLsG6LMmQyb36xcNTX13S8bIRObg1JZ1ZJD=s320" alt="GitCareers" /><br><br>`;
 // function to get users profile
 async function userProfile(username) {
   // get profile data for username
@@ -97,9 +98,11 @@ async function getUserJobs(language, country) {
 async function sendEmail(event) {
   event.preventDefault();
   const emailForm = document.querySelector('#email-input');
+  emailForm.classList.remove('is-valid');
   const send = emailForm.value;
   console.log(send);
-  // fetch email end po
+  // fetch email end point
+  console.log(jobLinks);
   const response = await fetch('http://localhost:5500/email', {
     method: 'POST',
     credentials: 'include',
@@ -108,10 +111,12 @@ async function sendEmail(event) {
     },
     body: JSON.stringify({
       email: send,
+      message: jobLinks,
     }),
   });
   const success = response.json();
   console.log(success);
+  emailForm.classList.add('is-valid');
   return success;
 }
 // make user jobs cards and email form
@@ -122,6 +127,8 @@ async function makeJobsCards(jobsData) {
   jobsData.forEach((job) => {
     // pluck data for each card off objects
     const { title, company, created, location, salary_max, redirect_url } = job;
+    // first append to global job list string and add new line
+    jobLinks += `${company.display_name}: ${title}<br>${redirect_url}<br><br>`;
     let html = `
         <div class="card m-3 col-sm-3 bg-dark" style="border-radius: 1em">
           <div class="card-body">
@@ -143,6 +150,7 @@ async function makeJobsCards(jobsData) {
     // after each card is made per job, add to page
     jobs.innerHTML += html;
   });
+  jobLinks += '<br><em>GitGood, GitCareers</em>';
   // create email form to send job posts to user's email
   const email = `
   <h4 class="text-light text-center mt-5">Save job postings for later?</h4>
@@ -152,8 +160,8 @@ async function makeJobsCards(jobsData) {
         id = "email-input"
         type="email"
         placeholder="Email"
+        class="form-control"
         required
-        class="form-control is-valid"
         style="border-radius: 1em 0em 0em 1em"
       />
       <button
@@ -173,7 +181,6 @@ async function makeJobsCards(jobsData) {
     jobs.innerHTML += email;
     // get email form if jobs are displayed
     const emailButton = document.querySelector('#email');
-    console.log(`${emailButton}`);
     // once form is submitted, send email
     emailButton.addEventListener('click', sendEmail);
   }
