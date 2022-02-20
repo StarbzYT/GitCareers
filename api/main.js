@@ -99,25 +99,37 @@ async function sendEmail(event) {
   event.preventDefault();
   const emailForm = document.querySelector('#email-input');
   emailForm.classList.remove('is-valid');
+  emailForm.classList.remove('is-invalid');
+  // clear previous error message if need be
+  const errorMessage = document.querySelector('#success-message');
+  errorMessage.innerHTML = '';
   const send = emailForm.value;
-  console.log(send);
-  // fetch email end point
-  console.log(jobLinks);
-  const response = await fetch('http://localhost:5500/email', {
-    method: 'POST',
-    credentials: 'include',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      email: send,
-      message: jobLinks,
-    }),
-  });
-  const success = response.json();
-  console.log(success);
-  emailForm.classList.add('is-valid');
-  return success;
+  const validEmail =
+    /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+  // check if email is valid, if not, show error
+  if (!send.match(validEmail)) {
+    // update error message
+    emailForm.classList.add('is-invalid');
+    errorMessage.innerHTML = 'Invalid email. Try again?';
+  } else {
+    // fetch email end point
+    const response = await fetch('http://localhost:5500/email', {
+      method: 'POST',
+      credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        email: send,
+        message: jobLinks,
+      }),
+    });
+    const success = response.json();
+    console.log(success);
+    emailForm.classList.add('is-valid');
+    errorMessage.innerHTML = 'Email sent!';
+    return success;
+  }
 }
 // make user jobs cards and email form
 async function makeJobsCards(jobsData) {
@@ -161,8 +173,8 @@ async function makeJobsCards(jobsData) {
         type="email"
         placeholder="Email"
         class="form-control"
-        required
         style="border-radius: 1em 0em 0em 1em"
+        required
       />
       <button
         id="email"
