@@ -4,7 +4,10 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" href="/templates/images/GitCareers.jpg" />
+    <link
+      rel="icon"
+      href="https://blogger.googleusercontent.com/img/a/AVvXsEhlHH43mF0_mZlPDru-SOF680CkR7pz3fenAm9UnyN9tJhNXJGB4C9q6ArTPU8o2ijcA5QZrVmhf-9uBVtv2FljqTJ_5qYKAtkC3ZqMSoetvIFXW_9Xu-a8L-MXadtOK8_7Xx6Cu0_oFEm-Fru43lea2eLsG6LMmQyb36xcNTX13S8bIRObg1JZ1ZJD=s320"
+    />
     <link
       rel="stylesheet"
       href="https://bootswatch.com/5/lux/bootstrap.min.css"
@@ -28,7 +31,14 @@
       }
       .card {
         border-radius: 1em;
-        border: 2px solid #4bbf73;
+      }
+      /* set background to image */
+      body {
+        background-image: url('/templates/images/Background.png');
+      }
+      /* change text color for cards */
+      .text-body {
+        color: #000000 !important;
       }
     </style>
   </head>
@@ -51,7 +61,7 @@
         </button>
 
         <div class="collapse navbar-collapse" id="navbarColor01">
-          <ul class="navbar-nav me-auto">
+          <ul class="navbar-nav ms-auto">
             <li class="nav-item">
               <a class="nav-link" href="/templates/about.html">About Us</a>
             </li>
@@ -61,8 +71,8 @@
     </nav>
     <h1 class="text-light text-center mt-4 mb-4 fade-this"><u>About Us</u></h1>
     <div class="row m-3 d-flex justify-content-center fade-this">
-      <div class="card bg-dark m-3" style="max-width: 60rem">
-        <div class="card-header text-light">
+      <div class="card m-3" style="max-width: 40rem">
+        <div class="card-header text-body">
           Project Role: Frontend Developer
         </div>
         <div class="card-body">
@@ -74,20 +84,20 @@
               style="max-width: 7rem"
             />
           </div>
-          <h4 class="card-title text-light">Carson Jennings</h4>
-          <p class="card-text text-light">School: University of Victoria</p>
-          <p class="card-text text-light">
+          <h4 class="card-title text-body">Carson Jennings</h4>
+          <p class="card-text text-body">School: University of Victoria</p>
+          <p class="card-text text-body">
             Degree: Bachelour’s of Science in Computer Science
           </p>
-          <p class="card-text text-light">Skills: Python, Java, C, HTML, CSS</p>
-          <p class="card-text text-light">
+          <p class="card-text text-body">Skills: Python, Java, C, HTML, CSS</p>
+          <p class="card-text text-body">
             Fun fact: I can juggle and ride a unicycle (not at the same time
             though)
           </p>
         </div>
       </div>
-      <div class="card bg-dark m-3" style="max-width: 60rem">
-        <div class="card-header text-light">
+      <div class="card m-3" style="max-width: 40rem">
+        <div class="card-header text-body">
           Project Role: Fullstack Developer
         </div>
         <div class="card-body">
@@ -99,12 +109,12 @@
               style="max-width: 7rem"
             />
           </div>
-          <h4 class="card-title text-light">Adarsh Chhokar</h4>
-          <p class="card-text text-light">School: Simon Fraser University</p>
-          <p class="card-text text-light">
+          <h4 class="card-title text-body">Adarsh Chhokar</h4>
+          <p class="card-text text-body">School: Simon Fraser University</p>
+          <p class="card-text text-body">
             Degree: Bachelour’s of Science in Computer Science
           </p>
-          <p class="card-text text-light">
+          <p class="card-text text-body">
             LinkedIn:
             <a
               class="text-light"
@@ -114,16 +124,14 @@
               >linkedin.com/in/adarsh-chhokar</a
             >
           </p>
-          <p class="card-text text-light">
+          <p class="card-text text-body">
             Fun fact: I play in OPEN tennis tournaments annually (singles and
             doubles)
           </p>
         </div>
       </div>
-      <div class="card bg-dark m-3" style="max-width: 60rem">
-        <div class="card-header text-light">
-          Project Role: Backend Developer
-        </div>
+      <div class="card m-3" style="max-width: 40rem">
+        <div class="card-header text-body">Project Role: Backend Developer</div>
         <div class="card-body">
           <div class="my-2">
             <img
@@ -133,17 +141,15 @@
               style="max-width: 7rem"
             />
           </div>
-          <h4 class="card-title text-light">Charlie Wager</h4>
-          <p class="card-text text-light">School: University of Victoria</p>
-          <p class="card-text text-light">Major: Software Engineering</p>
-          <p class="card-text text-light">Spotify/Apple Music: CHARLIEWAGER</p>
-          <p class="card-text text-light">
-            Skills: C, Java, Python, Javascript
-          </p>
+          <h4 class="card-title text-body">Charlie Wager</h4>
+          <p class="card-text text-body">School: University of Victoria</p>
+          <p class="card-text text-body">Major: Software Engineering</p>
+          <p class="card-text text-body">Spotify/Apple Music: CHARLIEWAGER</p>
+          <p class="card-text text-body">Skills: C, Java, Python, Javascript</p>
         </div>
       </div>
-      <div class="card bg-dark m-3" style="max-width: 60rem">
-        <div class="card-header text-light">Project Role: UI/UX Designer</div>
+      <div class="card m-3" style="max-width: 40rem">
+        <div class="card-header text-body">Project Role: UI/UX Designer</div>
         <div class="card-body">
           <div class="my-2">
             <img
@@ -153,24 +159,24 @@
               style="max-width: 7rem"
             />
           </div>
-          <h4 class="card-title text-light">Eric Tan</h4>
-          <p class="card-text text-light">
+          <h4 class="card-title text-body">Eric Tan</h4>
+          <p class="card-text text-body">
             School: British Columbia Institute of Technology
           </p>
-          <p class="card-text text-light">
+          <p class="card-text text-body">
             Skills: UX & UI Design, Business Strategy
           </p>
-          <p class="card-text text-light">
+          <p class="card-text text-body">
             LinkedIn:
             <a
-              class="text-light"
+              class="text-body"
               href="https://www.linkedin.com/in/ericistan/"
               target="_blank"
               rel="noopener noreferrer"
               >linkedin.com/in/ericistan</a
             >
           </p>
-          <p class="card-text text-light">Fun Fact: Chicken rice addict</p>
+          <p class="card-text text-body">Fun Fact: Chicken rice addict</p>
         </div>
       </div>
     </div>

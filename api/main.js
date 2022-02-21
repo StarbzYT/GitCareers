@@ -18,7 +18,9 @@ loading.style.display = 'none';
 // listen for submit event listener
 form.addEventListener('submit', getUsername);
 // global job links string for email
-let jobLinks = `<br><img style="max-width: 5%" src="https://blogger.googleusercontent.com/img/a/AVvXsEhlHH43mF0_mZlPDru-SOF680CkR7pz3fenAm9UnyN9tJhNXJGB4C9q6ArTPU8o2ijcA5QZrVmhf-9uBVtv2FljqTJ_5qYKAtkC3ZqMSoetvIFXW_9Xu-a8L-MXadtOK8_7Xx6Cu0_oFEm-Fru43lea2eLsG6LMmQyb36xcNTX13S8bIRObg1JZ1ZJD=s320" alt="GitCareers" /><br><br>`;
+let jobLinks = `<br><img style="max-width: 5%" src="https://blogger.googleusercontent.com/img/a/AVvXsEhlHH43mF0_mZlPDru-SOF680CkR7pz3fenAm9UnyN9tJhNXJGB4C9q6ArTPU8o2ijcA5QZrVmhf-9uBVtv2FljqTJ_5qYKAtkC3ZqMSoetvIFXW_9Xu-a8L-MXadtOK8_7Xx6Cu0_oFEm-Fru43lea2eLsG6LMmQyb36xcNTX13S8bIRObg1JZ1ZJD=s320" alt="GitCareers" /><h2>Custom Jobs Selected Just For You!</h2><br>`;
+// valid email flag so we only add jobs to joblinks if email is valid
+let successfulEmail = true;
 // function to get users profile
 async function userProfile(username) {
   // get profile data for username
@@ -37,7 +39,7 @@ async function makeProfileCard(profileData) {
   // create html card for profile
   const html = `<div class="row mx-3 d-flex justify-content-center">
     <div
-      class="card bg-dark m-3"
+      class="card m-3"
       style="max-width: 40rem; border-radius: 1em"
     >
       <div class="card-body">
@@ -49,8 +51,8 @@ async function makeProfileCard(profileData) {
             style="max-width: 7rem"
           />
         </div>
-        <h4 class="card-title text-light text-center">${name}</h4>
-        <p class="card-text text-light text-center">Top-Languages: ${
+        <h4 class="card-title text-body text-center">${name}</h4>
+        <p class="card-text text-body text-center">Top-Languages: ${
           Array.isArray(languages)
             ? // if languages are different add a comma then space ONLY IF both are DEFINED
               languages[0] && languages[1]
@@ -60,10 +62,10 @@ async function makeProfileCard(profileData) {
             : // if languages isnt an array (only one language), then just show it raw
               languages
         }</p>
-        <p class="card-text text-light text-center">Bio: ${bio}</p>
-        <p class="card-text text-light text-center">
+        <p class="card-text text-body text-center">Bio: ${bio}</p>
+        <p class="card-text text-body text-center">
           GitHub Profile:
-          <a class="text-light" href="https://www.${link}" target="_blank" rel="noopener noreferrer">github.com/${username}</a>
+          <a class="text-body" href="https://www.${link}" target="_blank" rel="noopener noreferrer">github.com/${username}</a>
         </p>
       </div>
     </div>
@@ -98,17 +100,23 @@ async function getUserJobs(language, country) {
 async function sendEmail(event) {
   event.preventDefault();
   const emailForm = document.querySelector('#email-input');
-  emailForm.classList.remove('is-valid');
-  emailForm.classList.remove('is-invalid');
   // clear previous error message if need be
   const errorMessage = document.querySelector('#success-message');
+  // remove invalid-email classes if applicable
+  errorMessage.classList.add('invalid-feedback');
+  emailForm.classList.remove('is-invalid');
   errorMessage.innerHTML = '';
   const send = emailForm.value;
   const validEmail =
     /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
   // check if email is valid, if not, show error
   if (!send.match(validEmail)) {
+    // if invalid email, DO NOT ADD JOBS TO JOB LINKS (duplicates occur)
+    successfulEmail = false;
     // update error message
+    errorMessage.classList.remove('valid-feedback');
+    emailForm.classList.remove('is-valid');
+    errorMessage.classList.add('invalid-feeback');
     emailForm.classList.add('is-invalid');
     errorMessage.innerHTML = 'Invalid email. Try again?';
   } else {
@@ -125,8 +133,9 @@ async function sendEmail(event) {
       }),
     });
     const success = response.json();
-    console.log(success);
     emailForm.classList.add('is-valid');
+    errorMessage.classList.remove('invalid-feedback');
+    errorMessage.classList.add('valid-feedback');
     errorMessage.innerHTML = 'Email sent!';
     return success;
   }
@@ -142,55 +151,55 @@ async function makeJobsCards(jobsData) {
     // first append to global job list string and add new line
     jobLinks += `${company.display_name}: ${title}<br>${redirect_url}<br><br>`;
     let html = `
-        <div class="card m-3 col-sm-3 bg-dark" style="border-radius: 1em">
+        <div class="card m-3 col-sm-3" style="border-radius: 1em">
           <div class="card-body">
-            <h4 class="card-title text-light">${title}</h4>
-            <h6 class="card-subtitle mb-2 text-muted text-light">${
+            <h4 class="card-title text-body">${title}</h4>
+            <h6 class="card-subtitle mb-2 text-muted text-body">${
               company.display_name
             }</h6>
-            <p class="card-text text-light">
+            <p class="card-text text-body">
               Location: ${location.display_name} <br />
               Max-Salary: ${
                 salary_max ? '$' + salary_max : 'Undisclosed'
               } <br />
               Posted: ${created}
             </p>
-            <a href="${redirect_url}" class="card-link text-light" target="_blank" rel="noopener noreferrer">Apply</a>
+            <a href="${redirect_url}" class="card-link text-body" target="_blank" rel="noopener noreferrer">Apply</a>
           </div>
         </div>
         `;
     // after each card is made per job, add to page
     jobs.innerHTML += html;
   });
-  jobLinks += '<br><em>GitGood, GitCareers</em>';
   // create email form to send job posts to user's email
   const email = `
   <h4 class="text-light text-center mt-5">Save job postings for later?</h4>
   <div class="form-group has-success mt-2 mb-5" id="email-form" style="max-width: 50vh">
-    <div class="input-group">
-      <input
-        id = "email-input"
-        type="email"
-        placeholder="Email"
-        class="form-control"
-        style="border-radius: 1em 0em 0em 1em"
-        required
-      />
-      <button
-        id="email"
-        type="submit"
-        class="btn btn-success"
-        style="border-radius: 0em 1em 1em 0em"
-      >
-        Send
-      </button>
-      <div class="valid-feedback" id="success-message">Email sent!</div>
-    </div>
+  <div class="input-group">
+  <input
+  id = "email-input"
+  type="email"
+  placeholder="Email"
+  class="form-control"
+  style="border-radius: 1em 0em 0em 1em"
+  required
+  />
+  <button
+  id="email"
+  type="submit"
+  class="btn btn-success"
+  style="border-radius: 0em 1em 1em 0em"
+  >
+  Send
+  </button>
+  <div class="invalid-feedback" id="success-message"></div>
+  </div>
   </div>
   `;
   // if the user gets jobs from us, show email form to save jobs, otherwise dont show it
   if (jobsData.length != 0) {
     jobs.innerHTML += email;
+    jobLinks += '<br><em>GitGood, GitCareers</em><br>';
     // get email form if jobs are displayed
     const emailButton = document.querySelector('#email');
     // once form is submitted, send email

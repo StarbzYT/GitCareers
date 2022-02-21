@@ -2,6 +2,7 @@
 const mail = require('./emails');
 const express = require('express');
 const bodyParser = require('body-parser');
+const path = require('path');
 const app = express();
 const PORT = process.env.PORT || 5500;
 
@@ -20,6 +21,14 @@ app.use((req, res, next) => {
 app.use(bodyParser.urlencoded({ extended: true }));
 // middleware for json body (email)
 app.use(bodyParser.json());
+// serve static files in templates directory
+app.use(express.static('../'));
+
+// main page redirect to temples
+app.get('/', (req, res) => {
+  res.redirect('/templates');
+});
+
 // post request to send email to user
 // email service
 app.post('/email', (req, res) => {
