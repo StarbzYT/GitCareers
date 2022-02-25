@@ -40,6 +40,11 @@
       .text-body {
         color: #000000 !important;
       }
+      /* strip away container padding for cards' headers */
+      .nopadding {
+        padding: 0 !important;
+        margin: 0 !important;
+      }
     </style>
   </head>
   <body style="background-color: black">
@@ -117,7 +122,7 @@
           <p class="card-text text-body">
             LinkedIn:
             <a
-              class="text-light"
+              class="text-body"
               href="https://www.linkedin.com/in/adarsh-chhokar-5b13641aa/"
               target="_blank"
               rel="noopener noreferrer"

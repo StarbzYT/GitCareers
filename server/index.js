@@ -1,8 +1,10 @@
 // import email function to send emails for POST
 const mail = require('./emails');
+// import jobs class to make request for jobs
+const jobs = require('./jobs');
 const express = require('express');
 const bodyParser = require('body-parser');
-const path = require('path');
+const JobList = require('./jobs');
 const app = express();
 const PORT = process.env.PORT || 5500;
 
@@ -28,18 +30,28 @@ app.use(express.static('../'));
 app.get('/', (req, res) => {
   res.redirect('/templates');
 });
-
+// make get request for jobs data
 // post request to send email to user
 // email service
 app.post('/email', (req, res) => {
   // send back email to user
   const email = req.body.email;
   const jobsMessage = req.body.message;
-  console.log(email);
-  console.log(jobsMessage);
   res.send(mail.sendEmail(email, jobsMessage));
 });
-
+// request for jobs
+app.post('/jobs', (req, res) => {
+  // request body data
+  const language = req.body.language;
+  const country = req.body.country;
+  const internships = req.body.internships;
+  // send back jobs to client
+  const jobsInstance = new JobList();
+  jobsInstance.getJobs(language, country, internships).then((jobs) => {
+    console.log(jobs);
+    res.send(jobs);
+  });
+});
 // listen on port 5500
 app.listen(PORT, () => {
   console.log(`listening on port ${PORT}`);

@@ -102,8 +102,9 @@ async function sendEmail(event) {
   const emailForm = document.querySelector('#email-input');
   // clear previous error message if need be
   const errorMessage = document.querySelector('#success-message');
-  // remove invalid-email classes if applicable
+  // add invalid class to message so input is still styled if email is sent more than once
   errorMessage.classList.add('invalid-feedback');
+  // remove previous X-mark/error-mark if it was there
   emailForm.classList.remove('is-invalid');
   errorMessage.innerHTML = '';
   const send = emailForm.value;
@@ -114,8 +115,10 @@ async function sendEmail(event) {
     // if invalid email, DO NOT ADD JOBS TO JOB LINKS (duplicates occur)
     successfulEmail = false;
     // update error message
+    // remove previous success classes
     errorMessage.classList.remove('valid-feedback');
     emailForm.classList.remove('is-valid');
+    // add invalid classes
     errorMessage.classList.add('invalid-feeback');
     emailForm.classList.add('is-invalid');
     errorMessage.innerHTML = 'Invalid email. Try again?';
@@ -133,8 +136,11 @@ async function sendEmail(event) {
       }),
     });
     const success = response.json();
+    // add checkmark to form
     emailForm.classList.add('is-valid');
+    // remove invalid holder class from previous form submission OR first (since the form starts with an invalid class just to hold the styles all together)
     errorMessage.classList.remove('invalid-feedback');
+    // show green success message
     errorMessage.classList.add('valid-feedback');
     errorMessage.innerHTML = 'Email sent!';
     return success;
@@ -233,13 +239,16 @@ async function getUsername(event) {
     let language1, language2, jobsList1, jobsList2, jobs;
     if (!Array.isArray(languages)) {
       // call function on one language
+      // -----Make Backend Request Here Instead----
       jobs = await getUserJobs(languages, country);
       // render jobs
       makeJobsCards(jobs);
     } else {
       language1 = languages[0];
       language2 = languages[1];
+      // -----Make Backend Request Here Instead----
       jobsList1 = await getUserJobs(language1, country);
+      // -----Make Backend Request Here Instead----
       jobsList2 = await getUserJobs(language2, country);
       // merge both lists together to call on jobs card function
       const finalJobList = jobsList1.slice(0, 5).concat(jobsList2.slice(0, 4));
