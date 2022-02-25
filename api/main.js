@@ -75,25 +75,39 @@ async function makeProfileCard(profileData) {
 }
 // render jobs based on top languages for each user
 async function getUserJobs(language, country) {
-  // map countries in drop down to api selections
-  const countries = {
-    Canada: 'ca',
-    'United States': 'us',
-    'Great Britain': 'gb',
-    Australia: 'au',
-    'New Zealand': 'nz',
-    India: 'in',
-  };
-  let URL;
+  let response;
   // if checkbox is checked, modify url to look for internships
   if (internships.checked) {
-    URL = `https://api.adzuna.com/v1/api/jobs/${countries[country]}/search/1?app_id=${APP_ID}&app_key=${API_KEY}&results_per_page=9&title_only=internship&what=`;
+    console.log(internships.checked);
+    // fetch jobs end point and if user is looking for internships, modify request
+    response = await fetch('http://localhost:5500/jobs', {
+      method: 'POST',
+      credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        language: language,
+        country: country,
+        internships: true,
+      }),
+    });
   } else {
     // if checkbox if not checked, then look for fulltime jobs
-    URL = `https://api.adzuna.com/v1/api/jobs/${countries[country]}/search/1?app_id=${APP_ID}&app_key=${API_KEY}&results_per_page=9&what=`;
+    response = await fetch('http://localhost:5500/jobs', {
+      method: 'POST',
+      credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        language: language,
+        country: country,
+        internships: false,
+      }),
+    });
   }
-  const newList = new JobList(URL);
-  const jobs = await newList.getJobList(language);
+  const jobs = await response.json();
   return jobs;
 }
 // send email to user when email form is submitted
