@@ -1,9 +1,5 @@
 // import helper files for js components
 import { User } from './users.js';
-import { JobList } from './jobs.js';
-// import api auth data
-import { APP_ID, API_KEY } from './apiAuth.js';
-
 // grab the form to listen to
 const form = document.querySelector('form');
 // grab input to get data out of the search box
@@ -76,37 +72,20 @@ async function makeProfileCard(profileData) {
 // render jobs based on top languages for each user
 async function getUserJobs(language, country) {
   let response;
-  // if checkbox is checked, modify url to look for internships
-  if (internships.checked) {
-    console.log(internships.checked);
-    // fetch jobs end point and if user is looking for internships, modify request
-    response = await fetch('http://localhost:5500/jobs', {
-      method: 'POST',
-      credentials: 'include',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        language: language,
-        country: country,
-        internships: true,
-      }),
-    });
-  } else {
-    // if checkbox if not checked, then look for fulltime jobs
-    response = await fetch('http://localhost:5500/jobs', {
-      method: 'POST',
-      credentials: 'include',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        language: language,
-        country: country,
-        internships: false,
-      }),
-    });
-  }
+  // if checkbox is checked, modify request to backend
+  // fetch jobs end point and if user is looking for internships, modify request
+  response = await fetch('http://localhost:5500/jobs', {
+    method: 'POST',
+    credentials: 'include',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      language: language,
+      country: country,
+      internships: internships.checked,
+    }),
+  });
   const jobs = await response.json();
   return jobs;
 }
@@ -260,9 +239,8 @@ async function getUsername(event) {
     } else {
       language1 = languages[0];
       language2 = languages[1];
-      // -----Make Backend Request Here Instead----
+      // make two requests for each lang
       jobsList1 = await getUserJobs(language1, country);
-      // -----Make Backend Request Here Instead----
       jobsList2 = await getUserJobs(language2, country);
       // merge both lists together to call on jobs card function
       const finalJobList = jobsList1.slice(0, 5).concat(jobsList2.slice(0, 4));

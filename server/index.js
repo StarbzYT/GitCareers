@@ -48,7 +48,6 @@ app.post('/jobs', (req, res) => {
   // send back jobs to client
   const jobsInstance = new JobList();
   jobsInstance.getJobs(language, country, internships).then((jobs) => {
-    console.log(jobs);
     res.send(jobs);
   });
 });
