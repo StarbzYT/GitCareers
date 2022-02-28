@@ -36,7 +36,10 @@ app.get('/', (req, res) => {
 app.post('/email', (req, res) => {
   // send back email to user
   const email = req.body.email;
+  console.log(email);
   const jobsMessage = req.body.message;
+  console.log(jobsMessage);
+  console.log('Email function value', mail.sendEmail(email, jobsMessage));
   res.send(mail.sendEmail(email, jobsMessage));
 });
 // request for jobs
@@ -55,3 +58,5 @@ app.post('/jobs', (req, res) => {
 app.listen(PORT, () => {
   console.log(`listening on port ${PORT}`);
 });
+
+module.exports = app;
