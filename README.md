@@ -30,7 +30,15 @@
 <p>Although the project was immensely structured, front to back, as the team progressed more and more by developing the features, everyone realized one thing. CSS is hard! 😆 Even after using BootStrap, making a <strong>responsive website (mobile friendly)</strong> wasn't easy. Simple tasks (aka centering divs) took some effort and delayed development. Furthermore, using <strong>ES6 syntax</strong> and organizing the project's file structure with <strong>object-oriented-programming</strong> in mind forced the team to follow best practices, which inevitably increased productivity. Something to keep in mind for future projects!</p>
 <h2 id="-improvements-">Bugs & Potential Improvements</h2>
 <ul>
+  <li>The client-side Javascript does not protect against <strong>cross-site-scripting</strong> because <strong>template strings</strong> are used to create page content. If a user decides to make a username that is a script tag, GitHub's API will find the user and the script will execute. Fortunately, there is no database where that exploitation can have a permanent effect on the user experience. Using Javascript's DOM methods to manually create elements on the page will fix this issue.</li>
   <li>The emails are directed to gmail's <strong>spam folder</strong>. As a result, user's may think they never received the email, and may go back and spam the email api. Showing a warning message to inform users of this issue is a good idea.</li>
-  <li></li>
-  <li>The About Us card headers are not fully spanning the length of the parent card. Perhaps changing the colour could make it look more streamline. CSS...😢</li>
+  <li>The codebase does not use enough semantic HTML tags. Using them would not only increase accessbility, but also readability as well.</li>
+  <li>The "About Us" card headers are not fully spanning the length of the parent card. Perhaps changing the colour could make it look more streamline. CSS...😢</li>
 </ul>
+<h2 id="-Google Lighthouse-">Lighthouse Scores</h2>
+<p>In case users are interested, here is GitCareer's Google Lighthouse evaluation on desktop. Feel free to check the score on mobile. It's around the same. Yep, semantic HTML would've increased the accessiblity score 😔.</p>
+<p align="center">
+  <img src="https://blogger.googleusercontent.com/img/a/AVvXsEjPM21ct8E96pyjhTMBg3x5hhizFgh0CmEbfhLrW5zz9WI3I2sLdEkbBs2siTqBIpTtbjyXYI5wtP39S9ZBuzl7J43u_b8q8uJHe8q9UQs9aGO4RmePmcHHkUKm4LI6lOyNbN-BO647L4Ls1spkQ5WeWJeZOOmwiYF9Q44kHL7pmL4YJj_kBywUmVMF=s2880" alt="Google Lighthouse Score"/>
+</p>
+<h2 id="-aboutus-">Meet The Team!</h2>
+<p>To learn more about GitCareer's developers, check out the <strong>About Us</strong> page on the website or click <a href="https://git-careers.herokuapp.com/templates/about.html" title="about us">here</a>.</p>
