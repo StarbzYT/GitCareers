@@ -40,5 +40,25 @@
 <p align="center">
   <img src="https://blogger.googleusercontent.com/img/a/AVvXsEjPM21ct8E96pyjhTMBg3x5hhizFgh0CmEbfhLrW5zz9WI3I2sLdEkbBs2siTqBIpTtbjyXYI5wtP39S9ZBuzl7J43u_b8q8uJHe8q9UQs9aGO4RmePmcHHkUKm4LI6lOyNbN-BO647L4Ls1spkQ5WeWJeZOOmwiYF9Q44kHL7pmL4YJj_kBywUmVMF=s2880" alt="Google Lighthouse Score"/>
 </p>
+<h2 id="-getstarted-">Get Started</h2>
+<p>To try this website on your machine, from the command-line, first <em>clone this repository</em>.</p>
+<pre><code class="lang-bash">
+<span class="hljs-keyword">#</span> <span class="hljs-comment">clone this repository</span>
+<span class="hljs-keyword">$ git clone</span> https://github.com/StarbzYT/GitCareers.git
+<span class="hljs-keyword">#</span> <span class="hljs-comment">go into the repository's server file</span>
+<span class="hljs-keyword">$ cd</span> GitCareers/server
+<span class="hljs-keyword">#</span> <span class="hljs-comment">remove current origin repository</span>
+<span class="hljs-keyword">$ cd</span> git remote remove origin
+</code></pre>
+<p>Install dependencies using <em>NPM</em>:</p>
+<pre><code class="lang-bash">
+<span class="hljs-keyword">#</span> <span class="hljs-comment">install dependencies</span>
+<span class="hljs-keyword">$ npm</span> install
+<span class="hljs-keyword">#</span> <span class="hljs-comment">start development server</span>
+<span class="hljs-keyword">$ node</span> index.js
+</code></pre>
+<p>Now, there should be a <em>development server running in your default browser</em></p>
 <h2 id="-aboutus-">Meet The Team!</h2>
-<p>To learn more about GitCareer's developers, check out the <strong>About Us</strong> page on the website or click <a href="https://git-careers.herokuapp.com/templates/about.html" title="about us">here</a>.</p>
+<p>To learn more about GitCareer's developers (who just made your life simpler), check out the <strong>About Us</strong> page on the website or click <a href="https://git-careers.herokuapp.com/templates/about.html" title="about us">here</a>.</p>
+<h3>GitGood, GitCareers!</h3>
+
