@@ -31,7 +31,7 @@
 <h2 id="-improvements-">Bugs & Potential Improvements</h2>
 <ul>
   <li>The client-side Javascript does not protect against <strong>cross-site-scripting</strong> because <strong>template strings</strong> are used to create page content. If a user decides to make a username that is a script tag, GitHub's API will find the user and the script will execute. Fortunately, there is no database where that exploitation can have a permanent effect on the user experience. Using Javascript's DOM methods to manually create elements on the page will fix this issue.</li>
-  <li>The emails are directed to gmail's <strong>spam folder</strong>. As a result, user's may think they never received the email, and may go back and spam the email api. Showing a warning message to inform users of this issue is a good idea.</li>
+  <li>The emails are directed to gmail's <strong>spam folder</strong>. As a result, user's may think they never received the email, and may go back and spam the email API. Showing a warning message to inform users of this issue is a good idea.</li>
   <li>The codebase does not use enough semantic HTML tags. Using them would not only increase accessbility, but also readability as well.</li>
   <li>The "About Us" card headers are not fully spanning the length of the parent card. Perhaps changing the colour could make it look more streamline. CSS...😢</li>
 </ul>
