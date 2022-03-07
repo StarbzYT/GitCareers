@@ -48,7 +48,7 @@
 <span class="hljs-keyword">#</span> <span class="hljs-comment">go into the repository's server file</span>
 <span class="hljs-keyword">$ cd</span> GitCareers/server
 <span class="hljs-keyword">#</span> <span class="hljs-comment">remove current origin repository</span>
-<span class="hljs-keyword">$ cd</span> git remote remove origin
+<span class="hljs-keyword">$ git</span> remote remove origin
 </code></pre>
 <p>Install dependencies using <em>NPM</em>:</p>
 <pre><code class="lang-bash">
