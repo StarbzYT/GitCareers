@@ -15,11 +15,6 @@
 <li><em><strong>Email</strong></em> themselves the jobs from all profiles they viewed (may or may not be their own profile) on the website.</li>
 </ul>
 </blockquote>
-<h2 id="-demo-">Here's a Quick Demo</h2>
-<p>This is a preview of how the site <em>should</em> work.</p>
-<video width="320" height="240" controls>
-  <source src="Video Link">
-</video>
 <h2 id="-creativity-">Collaborative Process</h2>
 <p align="center">
   <img src="https://blogger.googleusercontent.com/img/a/AVvXsEjvs6obbvrDdHPwskctKJJVmRWUqjsyqo_p-SYACDzeMdnXYhryTwAxVI4ubfJocShqrNT87IpMMdcSp3kZasGF0-ZHQxMVLt9TbkDK0xteFAI_KCm9TtADas2SXo4SYUHoGpTwKV9oYf_SKXJnNG_aiX45B_FK0hkT6oAMTLb8IfCPD35Ps8GOznz9=s2850" alt="Teamwork and Creativity Image"/>
