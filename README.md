@@ -59,6 +59,6 @@
 </code></pre>
 <p>Now, there should be a <em>development server running in your default browser</em></p>
 <h2 id="-aboutus-">Meet The Team!</h2>
-<p>To learn more about GitCareer's developers (who just made your life simpler), check out the <strong>About Us</strong> page on the website or click <a href="https://git-careers.herokuapp.com/templates/about.html" title="about us">here</a>. Be sure to read our designer, Eric Tan's <a href="https://tough-condor-480.notion.site/Eric-Tan-s-Portfolio-52ffdf0497d546cc8fb5cd25a348802b" title="Eric Tan">portfolio</a> for his explanation of how he thought about designing GitCareers from front to back. Read more <a href="https://tough-condor-480.notion.site/GitCareers-f5b2725624a3451397166947b8f1f1d0" title="Eric Tan's GitCareers Case Study">here</a>.</p>
+<p>To learn more about GitCareer's developers (who just made your life simpler), check out the <strong>About Us</strong> page on the website or click <a href="https://git-careers.herokuapp.com/templates/about.html" title="about us">here</a>. Be sure to read our designer's (Eric Tan) <a href="https://tough-condor-480.notion.site/Eric-Tan-s-Portfolio-52ffdf0497d546cc8fb5cd25a348802b" title="Eric Tan">portfolio</a> for his explanation of how he thought about designing GitCareers from front to back. Read more <a href="https://tough-condor-480.notion.site/GitCareers-f5b2725624a3451397166947b8f1f1d0" title="Eric Tan's GitCareers Case Study">here</a>.</p>
 <h3>GitGood, GitCareers!</h3>
 
