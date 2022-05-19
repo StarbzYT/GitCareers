@@ -21,11 +21,14 @@
 </p>
 <p>Using <a href="https://www.figma.com/" title="Figma Site">Figma</a>, the team orchestrated an <strong>online white-board session</strong> to organize everyone's thoughts into one common goal to prevent creative collisions later on. The <em>"How Might We" Wall</em> stirred conversations on potential methods to create page layouts, functionality, and styling, while the <em>Project Map</em> concentrated on specific components and page-flow (application links, and other user-specifications). It also served as various <em>tickets</em> for the team's developers to complete!</p>
 
-<h3>Wireframes</h3>
+<h3>Wireframes & Mock-Ups</h3>
 <p align="center">
   <img src="https://blogger.googleusercontent.com/img/a/AVvXsEgvwlgbQUvZ2gdEJumBl-H3yWOKObtU7o4LO13nwAiCLos4wtt1czBCm_uzhIs6-cyyXn-S0z93wwy2sE5KfNpAuzChB29oto5hX-dQ5ZnPEJLkQ8QBk2e-pAV5UcmiPf08T9KGEY9n4p7PK8X9KfuNPSmgH9Q22qeu-TtOoRXvVeUtZv4IQlJ8z7NC=s2880" alt="Figma Wireframes"/>
+  <img src="https://media.discordapp.net/attachments/931987247799099452/976911986862465064/Hero_image2x.png?width=1500&height=1000" alt="mock up"/>
+  <img src="https://media.discordapp.net/attachments/931987247799099452/976911987265122334/mockup_1.png?width=1500&height=1000" alt="mock up"/>
 </p>
-<p>The team's designer made feasible wireframes to pull everything together into a final product. Responsive design was kept in mind throughout the process and tickets for various features were finalized. This helped everyone think about which CSS tools would compliment the design's colour pallet/theme. It also defined our <strong>agile development cycles</strong>.</p>
+
+<p>The team's designer, <a href="https://www.linkedin.com/in/ericistan/" title="designer work">Eric Tan</a>, made feasible wireframes to pull everything together into a final product. Responsive design was kept in mind throughout the process and tickets for various features were finalized. This helped everyone think about which CSS tools would compliment the design's colour pallet/theme. It also defined our <strong>agile development cycles</strong>.</p>
 <h2 id="-lesson-">Lessons Learned</h2>
 <p>Although the project was immensely structured, front to back, as the team progressed more and more by developing the features, everyone realized one thing. CSS is hard! 😆 Even after using BootStrap, making a <strong>responsive website (mobile friendly)</strong> wasn't easy. Simple tasks (aka centering divs) took some effort and delayed development. Furthermore, using <strong>ES6 syntax</strong> and organizing the project's file structure, with <strong>object-oriented-programming</strong> in mind, forced the team to follow best practices, which inevitably increased productivity. Something to keep in mind for future projects!</p>
 <h2 id="-improvements-">Bugs & Potential Improvements</h2>
