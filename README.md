@@ -24,8 +24,8 @@
 <h3>Wireframes & Mock-Ups</h3>
 <p align="center">
   <img src="https://blogger.googleusercontent.com/img/a/AVvXsEgvwlgbQUvZ2gdEJumBl-H3yWOKObtU7o4LO13nwAiCLos4wtt1czBCm_uzhIs6-cyyXn-S0z93wwy2sE5KfNpAuzChB29oto5hX-dQ5ZnPEJLkQ8QBk2e-pAV5UcmiPf08T9KGEY9n4p7PK8X9KfuNPSmgH9Q22qeu-TtOoRXvVeUtZv4IQlJ8z7NC=s2880" alt="Figma Wireframes"/>
-  <img src="https://media.discordapp.net/attachments/931987247799099452/976911986862465064/Hero_image2x.png?width=1500&height=800" alt="mock up"/>
-  <img src="https://media.discordapp.net/attachments/931987247799099452/976911987265122334/mockup_1.png?width=1500&height=800" alt="mock up"/>
+  <img src="https://media.discordapp.net/attachments/931987247799099452/976911986862465064/Hero_image2x.png?width=1500&height=980" alt="mock up"/>
+  <img src="https://media.discordapp.net/attachments/931987247799099452/976911987265122334/mockup_1.png?width=1500&height=950" alt="mock up"/>
 </p>
 
 <p>The team's designer, <a href="https://www.linkedin.com/in/ericistan/" title="designer work">Eric Tan</a>, made feasible wireframes to pull everything together into a final product. Responsive design was kept in mind throughout the process and tickets for various features were finalized. This helped everyone think about which CSS tools would compliment the design's colour pallet/theme. It also defined our <strong>agile development cycles</strong>.</p>
